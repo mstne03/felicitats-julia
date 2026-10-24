@@ -12,12 +12,14 @@ import './styles/polaroids.css';
 import './styles/player.css';
 import './styles/video.css';
 import './styles/dock.css';
+import './styles/lightbox.css';
 
 import { slides } from './content/slides.js';
 import { renderSlides } from './render.js';
 import { initNav } from './nav.js';
 import { initConfetti } from './confetti.js';
 import { initVideo } from './video.js';
+import { initLightbox } from './lightbox.js';
 
 const deck = document.getElementById('deck');
 deck.innerHTML = renderSlides(slides);
@@ -38,6 +40,8 @@ for (let i = 0; i < 14; i++) {
 
 const burst = initConfetti(document.getElementById('confetti'));
 const video = initVideo(document.getElementById('vid'), document.getElementById('sound'));
+
+initLightbox(deck);
 
 initNav({
   slides: [...deck.children],

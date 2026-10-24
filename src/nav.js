@@ -55,7 +55,7 @@ export function initNav({ slides, deck, onEnter }) {
 
   addEventListener('keydown', (e) => {
     // Enter/Espacio sobre un botón activan el botón, no avanzan la diapositiva
-    if ((e.key === 'Enter' || e.key === ' ') && e.target.closest('button')) return;
+    if ((e.key === 'Enter' || e.key === ' ') && e.target.closest('button,[role=button]')) return;
     if (['ArrowRight', 'PageDown', ' ', 'Enter'].includes(e.key)) {
       e.preventDefault();
       next();
@@ -67,7 +67,7 @@ export function initNav({ slides, deck, onEnter }) {
   });
 
   deck.addEventListener('click', (e) => {
-    if (e.target.closest('button,video,a')) return;
+    if (e.target.closest('button,video,a,.polaroid')) return;
     if (e.clientX < innerWidth / 3) prev();
     else next();
   });
