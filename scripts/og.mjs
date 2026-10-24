@@ -1,6 +1,6 @@
 // Renderiza og/og.html a public/og.png (1200×630) con Playwright.
 import { pathToFileURL } from 'node:url';
-import { chromium } from 'playwright';
+import { chromium } from '@playwright/test';
 
 const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 1200, height: 630 } });
