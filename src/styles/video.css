@@ -69,10 +69,22 @@
     gap: 16px;
   }
   .phone {
-    height: min(52vh, 460px);
+    /* deja sitio al pie (micro + cita + estrellas) bajo el móvil */
+    height: min(460px, 100dvh - 360px);
   }
   .vcap {
     align-items: center;
     text-align: center;
+  }
+}
+@media (max-width: 760px) and (max-height: 600px) {
+  .vcap {
+    gap: 8px;
+  }
+  .vcap .quote {
+    font-size: 28px;
+  }
+  .mic {
+    font-size: 28px;
   }
 }

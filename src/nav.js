@@ -4,7 +4,6 @@ export function initNav({ slides, deck, onEnter }) {
   const count = document.getElementById('count');
   const nowTitle = document.getElementById('nowTitle');
   const wave = document.getElementById('wave');
-  const hint = document.getElementById('hint');
   let cur = 0;
 
   for (let i = 0; i < n; i++) {
@@ -37,7 +36,6 @@ export function initNav({ slides, deck, onEnter }) {
     } catch {
       /* iframes sandboxed */
     }
-    if (i > 0) hint.style.opacity = 0;
   }
 
   const next = () => go(cur + 1);
@@ -108,8 +106,6 @@ export function initNav({ slides, deck, onEnter }) {
     },
     true,
   );
-
-  setTimeout(() => (hint.style.opacity = 0), 6000);
 
   const h = parseInt((location.hash || '').slice(1), 10);
   go(isNaN(h) ? 0 : h - 1, true);

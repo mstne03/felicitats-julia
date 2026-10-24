@@ -93,6 +93,6 @@
     align-items: center;
   }
   .vinyl {
-    width: min(56vw, 250px);
+    width: min(56vw, 250px, 100dvh - 440px);
   }
 }

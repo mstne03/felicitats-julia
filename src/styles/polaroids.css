@@ -82,7 +82,9 @@
 
 @media (max-width: 760px) {
   .photos {
-    --pw: min(44vw, 22vh);
+    /* ancho: 2 columnas dentro del padding de 16px de la diapositiva;
+       alto: ~3 filas (2,6·pw + gaps) en lo que dejan cabecera, barra superior y dock */
+    --pw: min((100vw - 32px - var(--gx)) / 2 - 2px, (100dvh - 340px) / 2.6);
     --gx: 16px;
     row-gap: 14px;
     width: calc(2 * var(--pw) + var(--gx) + 2px);

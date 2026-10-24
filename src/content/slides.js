@@ -54,9 +54,9 @@ export const slides = [
     type: 'player',
     title: 'Pròximament · Hit mundial',
     heading: 'La teva propera cançó?',
-    cover: '🎤',
+    coverImg: 'img/hit.webp',
     song: 'Hit mundial',
-    artist: 'Júlia · Single 2026',
+    artist: 'Júlia · Single 2027',
     times: ['0:19', '∞'],
     lead: 'Esperem que la teva propera cançó sigui <em>un hit mundial</em>',
     chips: [
