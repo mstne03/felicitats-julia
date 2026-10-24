@@ -5,7 +5,7 @@ const ESC = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ESC[c]);
 
 const photo = ({ name, shape, alt, caption, pos }) => `
-  <figure class="polaroid p-${shape}">
+  <figure class="polaroid p-${shape}" tabindex="0" role="button" aria-label="Veure en gran: ${esc(alt)}">
     <picture>
       <source srcset="img/${name}.webp" type="image/webp">
       <img src="img/${name}.jpg" alt="${esc(alt)}" loading="lazy"${pos ? ` style="object-position:${esc(pos)}"` : ''}>

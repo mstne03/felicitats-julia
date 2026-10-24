@@ -45,3 +45,29 @@ test('el deep-link por hash abre la diapositiva indicada', async ({ page }) => {
   await page.goto('/#3');
   await expect(page.locator('#count')).toHaveText(`03 / ${LABEL}`);
 });
+
+test('las polaroids se abren en el visor y se recorren sin cambiar de diapositiva', async ({
+  page,
+}, info) => {
+  await page.goto('/#4');
+  const fotos = slides[3].photos;
+  await page.getByRole('button', { name: `Veure en gran: ${fotos[1].alt}` }).click();
+  const visor = page.locator('#lb');
+  await expect(visor).toBeVisible();
+  await expect(page.locator('#lbCount')).toHaveText(`2 / ${fotos.length}`);
+  await page.keyboard.press('ArrowRight');
+  await expect(page.locator('#lbCount')).toHaveText(`3 / ${fotos.length}`);
+  // la foto cabe entera en pantalla (poll: el desplazamiento del carrusel es suave)
+  const img = visor.locator('.lb-item img').nth(2);
+  const vp = page.viewportSize();
+  await expect
+    .poll(async () => {
+      const b = await img.boundingBox();
+      return b.x >= 0 && b.y >= 0 && b.x + b.width <= vp.width && b.y + b.height <= vp.height;
+    })
+    .toBe(true);
+  await page.screenshot({ path: `test-results/${info.project.name}-visor.png` });
+  await page.keyboard.press('Escape');
+  await expect(visor).toBeHidden();
+  await expect(page.locator('#count')).toHaveText(`04 / ${LABEL}`);
+});
