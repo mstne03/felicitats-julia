@@ -10,7 +10,7 @@ const photo = ({ name, shape, alt, caption, pos }) => `
       <source srcset="img/${name}.webp" type="image/webp">
       <img src="img/${name}.jpg" alt="${esc(alt)}" loading="lazy"${pos ? ` style="object-position:${esc(pos)}"` : ''}>
     </picture>
-    <figcaption>${esc(caption)}</figcaption>
+    ${caption ? `<figcaption>${esc(caption)}</figcaption>` : ''}
   </figure>`;
 
 const bodies = {
@@ -18,7 +18,6 @@ const bodies = {
     <div class="inner cover">
       <div class="vinyl" aria-hidden="true"><div class="label"><span>${esc(s.label)}</span></div></div>
       <div class="txt">
-        <span class="kicker">${esc(s.kicker)}</span>
         <h1>${esc(s.heading)}</h1>
         ${EQ}
         <span class="tap">${esc(s.tap)}</span>
@@ -26,22 +25,20 @@ const bodies = {
     </div>`,
   message: (s) => `
     <div class="inner">
-      <span class="kicker">${esc(s.kicker)}</span>
       <p class="msg">${s.html}</p>
       <div class="staff" aria-hidden="true">${s.notes.map((n) => `<span style="${n.style}">${n.glyph}</span>`).join('')}</div>
     </div>`,
   tracks: (s) => `
     <div class="inner">
       <div class="track-head"><span class="track-no">${esc(s.track)}</span><h2>${esc(s.heading)}</h2></div>
-      <div class="photos ${s.photos.length === 3 ? 'three' : 'two'}">${s.photos.map(photo).join('')}
+      <div class="photos grid">${s.photos.map(photo).join('')}
       </div>
     </div>`,
   player: (s) => `
     <div class="inner">
-      <span class="kicker">${esc(s.kicker)}</span>
       <h2>${esc(s.heading)}</h2>
       <div class="player">
-        <div class="cover-art" aria-hidden="true">${s.cover}</div>
+        <div class="cover-art" aria-hidden="true">${s.coverImg ? `<img src="${s.coverImg}" alt="">` : s.cover}</div>
         <div><div class="p-title">${esc(s.song)}</div><div class="p-artist">${esc(s.artist)}</div></div>
         <div class="bar" aria-hidden="true"><i></i></div>
         <div class="times"><span>${esc(s.times[0])}</span><span>${esc(s.times[1])}</span></div>
@@ -57,7 +54,6 @@ const bodies = {
           <button class="sound" id="sound" aria-label="Activar so">🔇</button>
         </div>
         <div class="vcap">
-          <span class="kicker">${esc(s.kicker)}</span>
           <div class="mic" aria-hidden="true">🎙️</div>
           <p class="quote">${esc(s.quote)}</p>
           <div class="stars" aria-hidden="true">⭐⭐⭐⭐⭐</div>

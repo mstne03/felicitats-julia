@@ -1,8 +1,11 @@
 import { expect, test } from '@playwright/test';
 
-const TOTAL = 10;
+import { slides } from '../src/content/slides.js';
 
-test('recorre las 10 diapositivas sin errores ni imágenes rotas', async ({ page }, info) => {
+const TOTAL = slides.length;
+const LABEL = String(TOTAL).padStart(2, '0');
+
+test('recorre todas las diapositivas sin errores ni imágenes rotas', async ({ page }, info) => {
   const problems = [];
   page.on('console', (m) => m.type() === 'error' && problems.push(`console: ${m.text()}`));
   page.on('pageerror', (e) => problems.push(`pageerror: ${e.message}`));
@@ -17,7 +20,7 @@ test('recorre las 10 diapositivas sin errores ni imágenes rotas', async ({ page
   await expect(page.locator('.slide')).toHaveCount(TOTAL);
 
   for (let i = 1; i <= TOTAL; i++) {
-    await expect(page.locator('#count')).toHaveText(`${String(i).padStart(2, '0')} / ${TOTAL}`);
+    await expect(page.locator('#count')).toHaveText(`${String(i).padStart(2, '0')} / ${LABEL}`);
     await expect(page.locator('.slide.active')).toHaveCount(1);
     // las imágenes de la diapositiva visible (las ocultas con display:none no se cargan)
     const imgs = page.locator('.slide.active img:visible');
@@ -40,5 +43,5 @@ test('recorre las 10 diapositivas sin errores ni imágenes rotas', async ({ page
 
 test('el deep-link por hash abre la diapositiva indicada', async ({ page }) => {
   await page.goto('/#3');
-  await expect(page.locator('#count')).toHaveText(`03 / ${TOTAL}`);
+  await expect(page.locator('#count')).toHaveText(`03 / ${LABEL}`);
 });

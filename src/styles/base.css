@@ -105,30 +105,6 @@ body {
   gap: 20px;
 }
 
-.kicker {
-  font-family: var(--mono);
-  font-size: 13px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--yellow);
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-}
-.kicker::before {
-  content: '';
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--pink);
-  box-shadow: 0 0 12px var(--pink);
-  animation: blink 1.2s infinite;
-}
-@keyframes blink {
-  50% {
-    opacity: 0.25;
-  }
-}
 h1,
 h2 {
   font-family: var(--display);
