@@ -1,0 +1,126 @@
+/* tracks */
+.track-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.track-no {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  color: var(--cyan);
+  text-transform: uppercase;
+}
+.photos {
+  display: flex;
+  gap: clamp(12px, 2.5vw, 28px);
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  width: 100%;
+}
+.polaroid {
+  background: #fffaf2;
+  padding: 10px 10px 38px;
+  border-radius: 4px;
+  box-shadow: 0 18px 40px #0009;
+  position: relative;
+  flex: 0 1 auto;
+  transition: transform 0.3s;
+}
+.polaroid img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 2px;
+  background: #ddd;
+}
+.polaroid figcaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 9px;
+  font-family: var(--display);
+  font-size: 16px;
+  color: #2a0f4a;
+}
+.polaroid:nth-child(1) {
+  transform: rotate(-4deg);
+}
+.polaroid:nth-child(2) {
+  transform: rotate(3deg) translateY(10px);
+}
+.polaroid:nth-child(3) {
+  transform: rotate(-2deg);
+}
+.polaroid::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  width: 80px;
+  height: 24px;
+  transform: translateX(-50%) rotate(-3deg);
+  background: #ffd23fcc;
+  box-shadow: 0 2px 6px #0003;
+  z-index: 2;
+}
+.p-land {
+  width: clamp(220px, 30vw, 400px);
+  aspect-ratio: 4/3.3;
+}
+.p-land img {
+  aspect-ratio: 4/3;
+}
+.p-sq {
+  width: clamp(200px, 24vw, 320px);
+}
+.p-sq img {
+  aspect-ratio: 1;
+}
+.p-port {
+  width: clamp(180px, 22vw, 300px);
+}
+.p-port img {
+  aspect-ratio: 3/4;
+}
+.photos.two .polaroid {
+  width: clamp(240px, 38vw, 460px);
+}
+
+@media (max-width: 760px) {
+  .photos {
+    flex-direction: column;
+    gap: 14px;
+  }
+  .photos .polaroid {
+    width: min(68vw, 300px) !important;
+    padding: 7px 7px 30px;
+  }
+  .photos .polaroid:nth-child(2) {
+    transform: rotate(3deg);
+  }
+  .photos.three .polaroid {
+    width: min(52vw, 220px) !important;
+  }
+  .photos.three .polaroid:nth-child(3) {
+    display: none;
+  }
+  .polaroid figcaption {
+    font-size: 13px;
+    bottom: 6px;
+  }
+}
+
+@media (max-height: 640px) and (max-width: 760px) {
+  .photos.two .polaroid:nth-child(2) {
+    display: none;
+  }
+}
+
+/* <picture> no debe añadir caja: la <img> sigue dimensionándose contra el .polaroid */
+.polaroid picture {
+  display: contents;
+}

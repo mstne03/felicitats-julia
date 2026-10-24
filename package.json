@@ -31,5 +31,10 @@
     "prettier": "^3.9.10",
     "sharp": "^0.35.5",
     "vite": "^8.3.5"
+  },
+  "dependencies": {
+    "@fontsource-variable/dm-sans": "^5.3.0",
+    "@fontsource/dm-mono": "^5.3.0",
+    "@fontsource/shrikhand": "^5.3.0"
   }
 }

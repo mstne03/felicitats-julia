@@ -1,409 +1,59 @@
 <!doctype html>
 <html lang="ca">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Per molts anys, Júlia! 🎤</title>
-<meta name="description" content="19 anys plens d'èxit. Un regal dels teus cosins Pau i Marc.">
-<meta name="theme-color" content="#1a0b2e">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://felicitats-julia.vercel.app/">
-<meta property="og:title" content="Per molts anys, Júlia! 🎤">
-<meta property="og:description" content="19 anys plens d'èxit. Un regal dels teus cosins Pau i Marc.">
-<meta property="og:image" content="https://felicitats-julia.vercel.app/og.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:locale" content="ca_ES">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Per molts anys, Júlia! 🎤">
-<meta name="twitter:description" content="19 anys plens d'èxit. Un regal dels teus cosins Pau i Marc.">
-<meta name="twitter:image" content="https://felicitats-julia.vercel.app/og.png">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎤</text></svg>">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Shrikhand&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=DM+Mono:wght@500&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg:#1a0b2e; --bg2:#2a0f4a;
-  --pink:#ff3d8b; --yellow:#ffd23f; --cyan:#2de2e6; --orange:#ff7a2f; --lilac:#b28dff;
-  --ink:#fff7ec; --muted:#cdbbe8;
-  --display:'Shrikhand',Georgia,serif; --sans:'DM Sans',system-ui,sans-serif; --mono:'DM Mono',ui-monospace,monospace;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;background:var(--bg);color:var(--ink);font-family:var(--sans);overflow:hidden;-webkit-font-smoothing:antialiased}
-body{touch-action:pan-y;user-select:none;-webkit-user-select:none}
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Per molts anys, Júlia! 🎤</title>
+    <meta
+      name="description"
+      content="19 anys plens d'èxit. Un regal dels teus cosins Pau i Marc."
+    />
+    <meta name="theme-color" content="#1a0b2e" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="%SITE_URL%/" />
+    <meta property="og:title" content="Per molts anys, Júlia! 🎤" />
+    <meta
+      property="og:description"
+      content="19 anys plens d'èxit. Un regal dels teus cosins Pau i Marc."
+    />
+    <meta property="og:image" content="%SITE_URL%/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="ca_ES" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Per molts anys, Júlia! 🎤" />
+    <meta
+      name="twitter:description"
+      content="19 anys plens d'èxit. Un regal dels teus cosins Pau i Marc."
+    />
+    <meta name="twitter:image" content="%SITE_URL%/og.png" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎤</text></svg>"
+    />
+  </head>
+  <body>
+    <div class="bg" id="bg" aria-hidden="true"></div>
+    <canvas id="confetti" aria-hidden="true"></canvas>
 
-/* background */
-.bg{position:fixed;inset:0;z-index:0;overflow:hidden;background:
-  radial-gradient(60vmax 60vmax at 10% 0%, #ff3d8b55, transparent 60%),
-  radial-gradient(55vmax 55vmax at 100% 30%, #2de2e644, transparent 60%),
-  radial-gradient(60vmax 60vmax at 40% 110%, #ffd23f33, transparent 60%),
-  linear-gradient(160deg,var(--bg),var(--bg2));}
-.bg::after{content:"";position:absolute;inset:0;background-image:radial-gradient(#ffffff14 1px,transparent 1.5px);background-size:22px 22px}
-.note{position:absolute;font-size:28px;opacity:.0;animation:float 14s linear infinite;color:#fff}
-@keyframes float{0%{transform:translateY(110vh) rotate(0);opacity:0}10%{opacity:.35}90%{opacity:.35}100%{transform:translateY(-15vh) rotate(40deg);opacity:0}}
+    <header class="top">
+      <div class="brand">Júlia · 19</div>
+      <div class="count" id="count">01 / 10</div>
+    </header>
 
-/* deck */
-.deck{position:fixed;inset:0;z-index:1}
-.slide{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:72px 24px 110px;
-  opacity:0;visibility:hidden;transform:scale(.96) translateY(14px);transition:opacity .55s ease,transform .7s cubic-bezier(.2,.8,.2,1),visibility 0s .55s}
-.slide.active{opacity:1;visibility:visible;transform:none;transition:opacity .55s ease,transform .7s cubic-bezier(.2,.8,.2,1),visibility 0s}
-.slide.before{transform:scale(.96) translateY(-14px)}
-.inner{width:100%;max-width:1100px;max-height:100%;display:flex;flex-direction:column;align-items:center;text-align:center;gap:20px}
+    <main class="deck" id="deck"></main>
 
-.kicker{font-family:var(--mono);font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--yellow);display:inline-flex;align-items:center;gap:10px}
-.kicker::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--pink);box-shadow:0 0 12px var(--pink);animation:blink 1.2s infinite}
-@keyframes blink{50%{opacity:.25}}
-h1,h2{font-family:var(--display);font-weight:400;line-height:.95;letter-spacing:.005em}
-h1{font-size:clamp(52px,10vw,132px);text-shadow:4px 4px 0 var(--pink),8px 8px 0 #00000055}
-h2{font-size:clamp(36px,6vw,76px);text-shadow:3px 3px 0 var(--pink)}
-.lead{font-size:clamp(18px,2.4vw,26px);line-height:1.4;color:var(--ink);max-width:30ch;text-wrap:balance}
-.lead em{font-style:normal;color:var(--yellow)}
+    <p class="hint" id="hint">← → · llisca · toca</p>
 
-/* cover */
-.cover{display:grid;grid-template-columns:auto 1fr;gap:clamp(24px,5vw,64px);align-items:center;text-align:left}
-.cover .txt{display:flex;flex-direction:column;gap:18px;align-items:flex-start}
-.vinyl{width:clamp(200px,32vw,380px);aspect-ratio:1;border-radius:50%;position:relative;
-  background:repeating-radial-gradient(circle at 50% 50%,#111 0 2px,#1d1d1d 2px 4px);
-  box-shadow:0 0 0 6px #0005,0 30px 60px #0008, inset 0 0 0 1px #fff1;animation:spin 6s linear infinite}
-.vinyl::before{content:"";position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,transparent 0 20%,#ffffff22 25%,transparent 32% 70%,#ffffff18 75%,transparent 82%)}
-.vinyl .label{position:absolute;inset:32%;border-radius:50%;background:conic-gradient(var(--pink),var(--orange),var(--yellow),var(--pink));display:grid;place-items:center;
-  font-family:var(--display);font-size:clamp(36px,6vw,72px);color:var(--bg);box-shadow:inset 0 0 0 3px #0003}
-.vinyl .label::after{content:"";position:absolute;width:8%;aspect-ratio:1;border-radius:50%;background:var(--bg)}
-.vinyl .label span{transform:translateY(-6%)}
-.vinyl .label{animation:spin 6s linear infinite reverse}
-@keyframes spin{to{transform:rotate(360deg)}}
-.big19{font-family:var(--display);font-size:clamp(20px,2.6vw,30px);color:var(--cyan)}
-
-.eq{display:flex;gap:5px;align-items:flex-end;height:36px}
-.eq i{width:7px;border-radius:3px;background:linear-gradient(var(--yellow),var(--pink));animation:eq 1s ease-in-out infinite}
-.eq i:nth-child(2){animation-delay:-.3s}.eq i:nth-child(3){animation-delay:-.6s}.eq i:nth-child(4){animation-delay:-.15s}.eq i:nth-child(5){animation-delay:-.45s}.eq i:nth-child(6){animation-delay:-.75s}.eq i:nth-child(7){animation-delay:-.2s}
-@keyframes eq{0%,100%{height:20%}50%{height:100%}}
-
-.tap{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-
-/* message */
-.msg{font-family:var(--display);font-size:clamp(30px,5vw,64px);line-height:1.1;max-width:18ch;text-wrap:balance}
-.msg .hl{color:var(--yellow)}
-.msg .hl2{color:var(--cyan)}
-.staff{width:min(560px,80vw);height:46px;background:repeating-linear-gradient(transparent 0 8px,#ffffff40 8px 9px);position:relative}
-.staff span{position:absolute;top:50%;font-size:30px;transform:translateY(-55%)}
-
-/* tracks */
-.track-head{display:flex;flex-direction:column;align-items:center;gap:8px}
-.track-no{font-family:var(--mono);font-size:13px;letter-spacing:.2em;color:var(--cyan);text-transform:uppercase}
-.photos{display:flex;gap:clamp(12px,2.5vw,28px);justify-content:center;align-items:center;flex-wrap:nowrap;width:100%}
-.polaroid{background:#fffaf2;padding:10px 10px 38px;border-radius:4px;box-shadow:0 18px 40px #0009;position:relative;flex:0 1 auto;transition:transform .3s}
-.polaroid img{display:block;width:100%;height:100%;object-fit:cover;border-radius:2px;background:#ddd}
-.polaroid figcaption{position:absolute;left:0;right:0;bottom:9px;font-family:var(--display);font-size:16px;color:#2a0f4a}
-.polaroid:nth-child(1){transform:rotate(-4deg)}
-.polaroid:nth-child(2){transform:rotate(3deg) translateY(10px)}
-.polaroid:nth-child(3){transform:rotate(-2deg)}
-.polaroid::before{content:"";position:absolute;top:-12px;left:50%;width:80px;height:24px;transform:translateX(-50%) rotate(-3deg);background:#ffd23fcc;box-shadow:0 2px 6px #0003;z-index:2}
-.p-land{width:clamp(220px,30vw,400px);aspect-ratio:4/3.3}
-.p-land img{aspect-ratio:4/3}
-.p-sq{width:clamp(200px,24vw,320px)}
-.p-sq img{aspect-ratio:1}
-.p-port{width:clamp(180px,22vw,300px)}
-.p-port img{aspect-ratio:3/4}
-.photos.two .polaroid{width:clamp(240px,38vw,460px)}
-
-/* player */
-.player{width:min(560px,92vw);background:#ffffff12;border:1px solid #ffffff22;border-radius:22px;padding:22px;display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center;text-align:left;backdrop-filter:blur(10px);box-shadow:0 30px 60px #0006}
-.cover-art{width:96px;height:96px;border-radius:12px;background:conic-gradient(from 210deg,var(--pink),var(--orange),var(--yellow),var(--cyan),var(--lilac),var(--pink));display:grid;place-items:center;font-size:44px}
-.p-title{font-weight:700;font-size:20px}
-.p-artist{color:var(--muted);font-size:15px;margin-top:2px}
-.bar{grid-column:1/-1;height:6px;border-radius:3px;background:#ffffff25;overflow:hidden}
-.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--yellow),var(--pink));border-radius:3px}
-.slide.active .bar i{animation:prog 7s linear forwards}
-@keyframes prog{to{width:100%}}
-.times{grid-column:1/-1;display:flex;justify-content:space-between;font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:-10px}
-.charts{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
-.chip{font-family:var(--mono);font-size:13px;padding:8px 14px;border-radius:999px;background:#ffffff14;border:1px solid #ffffff2a}
-.chip b{color:var(--yellow)}
-
-/* video */
-.video-wrap{display:grid;grid-template-columns:auto auto;gap:clamp(20px,5vw,60px);align-items:center}
-.phone{position:relative;height:min(62vh,600px);aspect-ratio:464/832;border-radius:28px;padding:8px;background:linear-gradient(145deg,#2b2b38,#0d0d14);box-shadow:0 30px 70px #000a,0 0 0 2px #ffffff18}
-.phone video{width:100%;height:100%;object-fit:cover;border-radius:21px;background:#000;display:block}
-.sound{position:absolute;right:18px;bottom:18px;width:44px;height:44px;border-radius:50%;border:0;background:#000a;color:#fff;font-size:20px;cursor:pointer;backdrop-filter:blur(6px);z-index:3}
-.vcap{display:flex;flex-direction:column;gap:16px;align-items:flex-start;text-align:left;max-width:420px}
-.vcap .quote{font-family:var(--display);font-size:clamp(34px,5vw,62px);line-height:1;color:var(--yellow);text-shadow:3px 3px 0 var(--pink)}
-.stars{font-size:22px;letter-spacing:6px}
-.mic{font-size:38px}
-
-/* finale */
-.sign{font-family:var(--display);font-size:clamp(26px,3.6vw,42px);color:var(--cyan)}
-.again{margin-top:6px;font-family:var(--mono);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--bg);background:var(--yellow);border:0;border-radius:999px;padding:12px 20px;cursor:pointer;box-shadow:0 6px 0 #c79a12}
-.again:active{transform:translateY(3px);box-shadow:0 3px 0 #c79a12}
-
-/* chrome */
-.top{position:fixed;top:0;left:0;right:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:16px 20px;pointer-events:none}
-.brand{font-family:var(--display);font-size:20px}
-.count{font-family:var(--mono);font-size:13px;color:var(--muted)}
-.dock{position:fixed;left:50%;bottom:max(18px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:5;display:flex;align-items:center;gap:14px;padding:10px 14px;border-radius:999px;background:#0f061dcc;border:1px solid #ffffff1f;backdrop-filter:blur(12px);width:min(520px,calc(100vw - 32px))}
-.dock button{width:40px;height:40px;flex:none;border-radius:50%;border:0;background:#ffffff14;color:#fff;font-size:18px;cursor:pointer;display:grid;place-items:center}
-.dock button:hover{background:#ffffff28}
-.dock button.play{background:var(--pink)}
-.now{flex:1;min-width:0;display:flex;flex-direction:column;gap:6px}
-.now-title{font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.wave{display:flex;gap:3px;height:16px;align-items:center}
-.wave i{flex:1;border-radius:2px;background:#ffffff30;transition:background .3s}
-.wave i.on{background:linear-gradient(var(--yellow),var(--pink))}
-.hint{position:fixed;bottom:84px;left:50%;transform:translateX(-50%);z-index:5;font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;transition:opacity .6s;pointer-events:none;white-space:nowrap}
-canvas#confetti{position:fixed;inset:0;z-index:4;pointer-events:none}
-
-@media (max-width:760px){
-  .slide{padding:64px 16px 100px}
-  .cover{grid-template-columns:1fr;justify-items:center;text-align:center;gap:22px}
-  .cover .txt{align-items:center}
-  .vinyl{width:min(56vw,250px)}
-  .photos{flex-direction:column;gap:14px}
-  .photos .polaroid{width:min(68vw,300px)!important;padding:7px 7px 30px}
-  .photos .polaroid:nth-child(2){transform:rotate(3deg)}
-  .photos.three .polaroid{width:min(52vw,220px)!important}
-  .photos.three .polaroid:nth-child(3){display:none}
-  .polaroid figcaption{font-size:13px;bottom:6px}
-  .video-wrap{grid-template-columns:1fr;justify-items:center;gap:16px}
-  .phone{height:min(52vh,460px)}
-  .vcap{align-items:center;text-align:center}
-  .player{grid-template-columns:auto 1fr;padding:16px}
-  .cover-art{width:72px;height:72px;font-size:34px}
-  .inner{gap:16px}
-}
-@media (max-height:640px) and (max-width:760px){
-  .photos.two .polaroid:nth-child(2){display:none}
-}
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-</style>
-</head>
-<body>
-<div class="bg" id="bg"></div>
-<canvas id="confetti"></canvas>
-
-<header class="top"><div class="brand">Júlia · 19</div><div class="count" id="count">01 / 10</div></header>
-
-<main class="deck" id="deck">
-
-  <!-- 1 cover -->
-  <section class="slide" data-title="Intro · Per molts anys, Júlia!">
-    <div class="inner cover">
-      <div class="vinyl"><div class="label"><span>19</span></div></div>
-      <div class="txt">
-        <span class="kicker">En directe · 19 anys de gira</span>
-        <h1>Per molts anys, Júlia!</h1>
-        <div class="eq"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-        <span class="tap">Toca, llisca o fes servir les fletxes →</span>
+    <nav class="dock" aria-label="Navegació">
+      <button id="prev" aria-label="Anterior">⏮</button>
+      <div class="now">
+        <div class="now-title" id="nowTitle" aria-live="polite"></div>
+        <div class="wave" id="wave" aria-hidden="true"></div>
       </div>
-    </div>
-  </section>
+      <button id="next" class="play" aria-label="Següent">⏭</button>
+    </nav>
 
-  <!-- 2 message -->
-  <section class="slide" data-title="Dedicatòria · Els teus cosins">
-    <div class="inner">
-      <span class="kicker">Dedicatòria</span>
-      <p class="msg">Els teus cosins preferits et desitgen uns <span class="hl">19 anys</span> plens <span class="hl2">d'èxit</span></p>
-      <div class="staff"><span style="left:8%">♪</span><span style="left:30%;top:30%">♫</span><span style="left:54%;top:62%">♩</span><span style="left:78%;top:38%">♬</span></div>
-    </div>
-  </section>
-
-  <!-- 3 -->
-  <section class="slide" data-title="Pista 01 · Les primeres maquetes">
-    <div class="inner">
-      <div class="track-head"><span class="track-no">Pista 01</span><h2>Les primeres maquetes</h2></div>
-      <div class="photos two">
-        <figure class="polaroid p-land"><img src="img/foto-01.jpg" alt="Foto de petits" loading="lazy"><figcaption>Demo 0.1</figcaption></figure>
-        <figure class="polaroid p-land"><img src="img/foto-02.jpg" alt="Foto en un banc" loading="lazy"><figcaption>Primer èxit ✌️</figcaption></figure>
-      </div>
-    </div>
-  </section>
-
-  <!-- 4 -->
-  <section class="slide" data-title="Pista 02 · Gira d'estiu">
-    <div class="inner">
-      <div class="track-head"><span class="track-no">Pista 02</span><h2>Gira d'estiu</h2></div>
-      <div class="photos two">
-        <figure class="polaroid p-land"><img src="img/foto-04.jpg" alt="Foto d'estiu" loading="lazy"><figcaption>Backstage</figcaption></figure>
-        <figure class="polaroid p-land"><img src="img/foto-03.jpg" alt="Foto en família" loading="lazy"><figcaption>Tota la banda</figcaption></figure>
-      </div>
-    </div>
-  </section>
-
-  <!-- 5 -->
-  <section class="slide" data-title="Pista 03 · Festa a l'estudi (feat. cosins)">
-    <div class="inner">
-      <div class="track-head"><span class="track-no">Pista 03</span><h2>Festa a l'estudi</h2></div>
-      <div class="photos two">
-        <figure class="polaroid p-land"><img src="img/foto-05.jpg" alt="Foto de grup" loading="lazy"><figcaption>Cor de veus</figcaption></figure>
-        <figure class="polaroid p-land"><img src="img/foto-06.jpg" alt="Selfie amb els cosins" loading="lazy"><figcaption>feat. els cosins</figcaption></figure>
-      </div>
-    </div>
-  </section>
-
-  <!-- 6 -->
-  <section class="slide" data-title="Pista 04 · Edició especial">
-    <div class="inner">
-      <div class="track-head"><span class="track-no">Pista 04</span><h2>Edició especial</h2></div>
-      <div class="photos two">
-        <figure class="polaroid p-land"><img src="img/foto-07.jpg" alt="Bufant espelmes" loading="lazy" style="object-position:62% 50%"><figcaption>Bufa fort! 🎂</figcaption></figure>
-        <figure class="polaroid p-port"><img src="img/foto-08.jpg" alt="Obrint regals" loading="lazy"><figcaption>Unboxing</figcaption></figure>
-      </div>
-    </div>
-  </section>
-
-  <!-- 7 -->
-  <section class="slide" data-title="Pista 05 · Estiu sense fi">
-    <div class="inner">
-      <div class="track-head"><span class="track-no">Pista 05</span><h2>Estiu sense fi</h2></div>
-      <div class="photos three">
-        <figure class="polaroid p-sq"><img src="img/foto-09.jpg" alt="Foto vora el mar" loading="lazy"><figcaption>Portada del single</figcaption></figure>
-        <figure class="polaroid p-land"><img src="img/foto-11.jpg" alt="Foto a la platja" loading="lazy"><figcaption>Videoclip</figcaption></figure>
-        <figure class="polaroid p-land"><img src="img/foto-10.jpg" alt="Banyant-se al port" loading="lazy"><figcaption>Making of</figcaption></figure>
-      </div>
-    </div>
-  </section>
-
-  <!-- 8 player -->
-  <section class="slide" data-title="Pròximament · Hit mundial">
-    <div class="inner">
-      <span class="kicker">Pròximament</span>
-      <h2>La teva propera cançó?</h2>
-      <div class="player">
-        <div class="cover-art">🎤</div>
-        <div><div class="p-title">Hit mundial</div><div class="p-artist">Júlia · Single 2026</div></div>
-        <div class="bar"><i></i></div>
-        <div class="times"><span>0:19</span><span>∞</span></div>
-      </div>
-      <p class="lead">Esperem que la teva propera cançó sigui <em>un hit mundial</em></p>
-      <div class="charts"><span class="chip"><b>#1</b> a les llistes</span><span class="chip"><b>∞</b> reproduccions</span><span class="chip"><b>19</b> anys d'èxits</span></div>
-    </div>
-  </section>
-
-  <!-- 9 video -->
-  <section class="slide" data-title="Pista extra · La propera guanyadora" data-video>
-    <div class="inner">
-      <div class="video-wrap">
-        <div class="phone">
-          <video id="vid" src="media/ot.mp4" poster="media/ot-poster.jpg" playsinline loop muted preload="metadata"></video>
-          <button class="sound" id="sound" aria-label="Activar so">🔇</button>
-        </div>
-        <div class="vcap">
-          <span class="kicker">Pista extra · Live</span>
-          <div class="mic">🎙️</div>
-          <p class="quote">"La propera guanyadora d'OT"</p>
-          <div class="stars">⭐⭐⭐⭐⭐</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 10 finale -->
-  <section class="slide" data-title="Bis · Per molts anys!" data-final>
-    <div class="inner">
-      <div class="eq"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-      <h1>Per molts anys!</h1>
-      <p class="lead">Que soni fort aquest any <em>19</em> 🎶</p>
-      <p class="sign">Els teus cosins Pau i Marc</p>
-      <button class="again" id="again">↺ Tornar a escoltar</button>
-    </div>
-  </section>
-
-</main>
-
-<p class="hint" id="hint">← → · llisca · toca</p>
-
-<nav class="dock" aria-label="Navegació">
-  <button id="prev" aria-label="Anterior">⏮</button>
-  <div class="now"><div class="now-title" id="nowTitle"></div><div class="wave" id="wave"></div></div>
-  <button id="next" class="play" aria-label="Següent">⏭</button>
-</nav>
-
-<script>
-(function(){
-  const slides=[...document.querySelectorAll('.slide')];
-  const n=slides.length;
-  let cur=0;
-  const count=document.getElementById('count'), nowTitle=document.getElementById('nowTitle'), wave=document.getElementById('wave');
-  const vid=document.getElementById('vid'), sound=document.getElementById('sound');
-
-  // floating notes
-  const bg=document.getElementById('bg'), glyphs=['♪','♫','♬','♩','🎵','🎶'];
-  for(let i=0;i<14;i++){const s=document.createElement('span');s.className='note';s.textContent=glyphs[i%glyphs.length];
-    s.style.left=(Math.random()*100)+'%';s.style.fontSize=(18+Math.random()*26)+'px';s.style.animationDelay=(-Math.random()*14)+'s';s.style.animationDuration=(10+Math.random()*10)+'s';bg.appendChild(s);}
-
-  // waveform segments = slides
-  for(let i=0;i<n;i++){const b=document.createElement('i');b.style.height=(30+Math.abs(Math.sin(i*1.7))*70)+'%';wave.appendChild(b);}
-  const bars=[...wave.children];
-
-  function go(i){
-    i=Math.max(0,Math.min(n-1,i));
-    if(i===cur && slides[i].classList.contains('active')) return;
-    slides.forEach((s,k)=>{s.classList.toggle('active',k===i);s.classList.toggle('before',k<i);});
-    cur=i;
-    count.textContent=String(i+1).padStart(2,'0')+' / '+String(n).padStart(2,'0');
-    nowTitle.textContent=slides[i].dataset.title;
-    bars.forEach((b,k)=>b.classList.toggle('on',k<=i));
-    // restart progress animation
-    slides[i].querySelectorAll('.bar i').forEach(el=>{el.style.animation='none';void el.offsetWidth;el.style.animation='';});
-    if(slides[i].hasAttribute('data-video')){vid.play().catch(()=>{});} else {vid.pause();}
-    if(slides[i].hasAttribute('data-final')||i===0&&!started){burst();}
-    try{history.replaceState(null,'','#'+(i+1));}catch(e){}
-    if(i>0) hideHint();
-  }
-  let started=false;
-  const next=()=>go(cur+1), prev=()=>go(cur-1);
-  document.getElementById('next').onclick=e=>{e.stopPropagation();next();};
-  document.getElementById('prev').onclick=e=>{e.stopPropagation();prev();};
-  document.getElementById('again').onclick=e=>{e.stopPropagation();go(0);};
-  sound.onclick=e=>{e.stopPropagation();vid.muted=!vid.muted;sound.textContent=vid.muted?'🔇':'🔊';if(!vid.muted)vid.play().catch(()=>{});};
-  vid.addEventListener('click',e=>{e.stopPropagation();sound.click();});
-
-  addEventListener('keydown',e=>{
-    if(['ArrowRight','PageDown',' ','Enter'].includes(e.key)){e.preventDefault();next();}
-    else if(['ArrowLeft','PageUp','Backspace'].includes(e.key)){e.preventDefault();prev();}
-    else if(e.key==='Home')go(0); else if(e.key==='End')go(n-1);
-  });
-  // click: left third = back, rest = forward
-  document.getElementById('deck').addEventListener('click',e=>{
-    if(e.target.closest('button,video,a'))return;
-    (e.clientX<innerWidth/3)?prev():next();
-  });
-  // swipe
-  let sx=0,sy=0,st=0;
-  addEventListener('touchstart',e=>{const t=e.touches[0];sx=t.clientX;sy=t.clientY;st=Date.now();},{passive:true});
-  addEventListener('touchend',e=>{const t=e.changedTouches[0];const dx=t.clientX-sx,dy=t.clientY-sy;
-    if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy)*1.2){(dx<0?next:prev)();swiped=Date.now();}},{passive:true});
-  let swiped=0;
-  document.getElementById('deck').addEventListener('click',e=>{if(Date.now()-swiped<400)e.stopImmediatePropagation();},true);
-
-  const hint=document.getElementById('hint');
-  function hideHint(){hint.style.opacity=0;}
-  setTimeout(hideHint,6000);
-
-  // confetti
-  const cv=document.getElementById('confetti'),cx=cv.getContext('2d');let parts=[],raf=0;
-  function size(){cv.width=innerWidth*devicePixelRatio;cv.height=innerHeight*devicePixelRatio;cx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);}
-  size();addEventListener('resize',size);
-  const cols=['#ff3d8b','#ffd23f','#2de2e6','#ff7a2f','#b28dff','#fff7ec'];
-  function burst(){
-    if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-    for(let i=0;i<160;i++){parts.push({x:innerWidth/2+(Math.random()-.5)*innerWidth*.4,y:innerHeight*.35,vx:(Math.random()-.5)*14,vy:-Math.random()*14-4,
-      w:6+Math.random()*6,h:8+Math.random()*10,r:Math.random()*6,vr:(Math.random()-.5)*.3,c:cols[i%cols.length],note:Math.random()<.12,life:0});}
-    if(!raf)tick();
-  }
-  function tick(){
-    cx.clearRect(0,0,innerWidth,innerHeight);
-    parts=parts.filter(p=>p.y<innerHeight+40&&p.life<400);
-    for(const p of parts){p.vy+=.32;p.vx*=.99;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;p.life++;
-      cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);cx.fillStyle=p.c;
-      if(p.note){cx.font='22px serif';cx.fillText('♪',0,0);}else cx.fillRect(-p.w/2,-p.h/2,p.w,p.h);cx.restore();}
-    raf=parts.length?requestAnimationFrame(tick):0;
-    if(!raf)cx.clearRect(0,0,innerWidth,innerHeight);
-  }
-
-  const h=parseInt((location.hash||'').slice(1),10);
-  go(isNaN(h)?0:h-1); started=true;
-})();
-</script>
-</body>
+    <script type="module" src="/src/main.js"></script>
+  </body>
 </html>

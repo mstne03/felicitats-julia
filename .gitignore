@@ -5,3 +5,4 @@ dist
 .sonar
 test-results
 playwright-report
+img-src
