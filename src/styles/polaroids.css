@@ -1,0 +1,97 @@
+/* tracks */
+.track-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.track-no {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  color: var(--cyan);
+  text-transform: uppercase;
+}
+
+/* cuadrícula de polaroids: --pw es el ancho de una polaroid apaisada */
+.photos {
+  --pw: clamp(100px, min(21vw, 28vh), 300px);
+  --gx: clamp(14px, 2.4vw, 30px);
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(14px, 3vh, 26px) var(--gx);
+  justify-content: center;
+  align-items: center;
+  width: calc(3 * var(--pw) + 2 * var(--gx) + 2px);
+  max-width: 100%;
+}
+.polaroid {
+  width: var(--pw);
+  background: #fffaf2;
+  padding: 7px 7px 20px;
+  border-radius: 4px;
+  box-shadow: 0 14px 30px #0009;
+  position: relative;
+  transition: transform 0.3s;
+}
+.polaroid img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 2px;
+  background: #ddd;
+}
+.polaroid:nth-child(3n + 1) {
+  transform: rotate(-3deg);
+}
+.polaroid:nth-child(3n + 2) {
+  transform: rotate(2.5deg) translateY(6px);
+}
+.polaroid:nth-child(3n) {
+  transform: rotate(-1.5deg);
+}
+.polaroid::before {
+  content: '';
+  position: absolute;
+  top: -9px;
+  left: 50%;
+  width: min(64px, 40%);
+  height: 18px;
+  transform: translateX(-50%) rotate(-3deg);
+  background: #ffd23fcc;
+  box-shadow: 0 2px 6px #0003;
+  z-index: 2;
+}
+/* retrato y cuadrada se encogen para que las filas midan lo mismo que una apaisada */
+.p-land img {
+  aspect-ratio: 4/3;
+}
+.p-sq {
+  width: calc(var(--pw) * 0.85);
+}
+.p-sq img {
+  aspect-ratio: 1;
+}
+.p-port {
+  width: calc(var(--pw) * 0.7);
+}
+.p-port img {
+  aspect-ratio: 3/4;
+}
+
+@media (max-width: 760px) {
+  .photos {
+    /* ancho: 2 columnas dentro del padding de 16px de la diapositiva;
+       alto: ~3 filas (2,6·pw + gaps) en lo que dejan cabecera, barra superior y dock */
+    --pw: min((100vw - 32px - var(--gx)) / 2 - 2px, (100dvh - 340px) / 2.6);
+    --gx: 16px;
+    row-gap: 14px;
+    width: calc(2 * var(--pw) + var(--gx) + 2px);
+  }
+}
+
+/* <picture> no debe añadir caja: la <img> sigue dimensionándose contra el .polaroid */
+.polaroid picture {
+  display: contents;
+}

@@ -1,0 +1,14 @@
+:root {
+  --bg: #1a0b2e;
+  --bg2: #2a0f4a;
+  --pink: #ff3d8b;
+  --yellow: #ffd23f;
+  --cyan: #2de2e6;
+  --orange: #ff7a2f;
+  --lilac: #b28dff;
+  --ink: #fff7ec;
+  --muted: #cdbbe8;
+  --display: 'Shrikhand', Georgia, serif;
+  --sans: 'DM Sans Variable', system-ui, sans-serif;
+  --mono: 'DM Mono', ui-monospace, monospace;
+}
